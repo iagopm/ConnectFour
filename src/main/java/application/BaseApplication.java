@@ -1,10 +1,12 @@
 package application;
 
 public class BaseApplication {
+    private Main main;
     private GameApplication gameApplication = new GameApplication();
 
-    public BaseApplication() {
+    public BaseApplication(Main main) {
         gameApplication.init();
+        this.main = main;
     }
 
     public GameApplication getGameApplication() {

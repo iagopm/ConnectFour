@@ -13,9 +13,12 @@ public class Game {
     private String game;
     @Column
     private Timestamp generated;
+    @Column
+    private int latest_player;
 
-    public Game(String name) {
+    public Game(String name, int latestPlayer) {
         this.game = name;
+        this.latest_player = latestPlayer;
         this.generated = new Timestamp(System.currentTimeMillis());
     }
 
@@ -45,6 +48,14 @@ public class Game {
 
     public void setGenerated(Timestamp generated) {
         this.generated = generated;
+    }
+
+    public int getLatest_player() {
+        return latest_player;
+    }
+
+    public void setLatest_player(int latestPlayer) {
+        this.latest_player = latestPlayer;
     }
 
     @Override

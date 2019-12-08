@@ -2,26 +2,41 @@ package application;
 
 import boardLogic.BoardFacade;
 import boardLogic.BoardFacadeImpl;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import loadGameLogic.LoadGameFacade;
 import loadGameLogic.LoadGameFacadeImpl;
 import persistenceLogic.PersistenceFacade;
 import persistenceLogic.PersistenceFacadeImpl;
 
 public class GameApplication implements Application {
+    private Stage stage;
     private BoardFacade boardFacade;
     private PersistenceFacade persistenceFacade;
     private LoadGameFacade loadGameFacade;
+    private Controller controller;
+
     @Override
     public void init() {
         boardFacade = new BoardFacadeImpl(this);
         persistenceFacade = new PersistenceFacadeImpl(this);
         loadGameFacade = new LoadGameFacadeImpl(this);
+        controller = new Controller(this);
     }
 
 
     @Override
-    public void restart() {
+    public void restart() throws Exception {
+        init();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("gameLayout.fxml"));
+        fxmlLoader.setController(controller);
 
+        Parent root = fxmlLoader.load();
+        stage.setTitle("");
+        stage.setScene(new Scene(root, 1024, 768));
+        stage.show();
     }
 
     @Override
@@ -51,5 +66,18 @@ public class GameApplication implements Application {
 
     public void setLoadGameFacade(LoadGameFacade loadGameFacade) {
         this.loadGameFacade = loadGameFacade;
+    }
+
+    public Controller getController() {
+        return controller;
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
+    @Override
+    public void setStage(Stage primaryStage) {
+        this.stage = primaryStage;
     }
 }

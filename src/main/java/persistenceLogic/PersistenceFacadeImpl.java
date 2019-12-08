@@ -37,7 +37,7 @@ public class PersistenceFacadeImpl implements PersistenceFacade {
     @Override
     public void insertGame(String game) {
         System.out.println(game);
-        dao.save(new Game(game));
+        dao.save(new Game(game, application.getBoardFacade().getCurrentPlayer()));
     }
 
     @Override

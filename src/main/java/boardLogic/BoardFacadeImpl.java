@@ -37,7 +37,7 @@ public class BoardFacadeImpl implements BoardFacade {
     }
 
     @Override
-    public void placeChip(Integer column) {
+    public void placeChip(Integer column) throws Exception {
         if (!checkColumnIsFull(column)) {
             Chip chipToPrint = calculateLastPosToPlace(chipsToIterateOn);
             //   System.out.println("chip to print " + chipToPrint);
@@ -45,17 +45,17 @@ public class BoardFacadeImpl implements BoardFacade {
             checkEnd(currentPlayer);
             if (checkEnd(currentPlayer)) {
                 System.out.println("Wins " + currentPlayer);
-                System.exit(0);
+                application.restart();
             }
             if (currentPlayer == 1) {
                 if (checkEnd(2)) {
                     System.out.println("Wins 2");
-                    System.exit(0);
+                    application.restart();
                 }
             } else {
                 if (checkEnd(1)) {
                     System.out.println("Wins 1");
-                    System.exit(0);
+                    application.restart();
                 }
             }
         }
@@ -208,5 +208,15 @@ public class BoardFacadeImpl implements BoardFacade {
                 chip.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
             }
         }
+    }
+
+    @Override
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    @Override
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }

@@ -28,6 +28,7 @@ public class LoadGameFacadeImpl implements LoadGameFacade {
         for (Game game : games) {
             if (game.getId() == id) {
                 newBoard = application.getPersistenceFacade().unparseGameIntoBoard(game.getGame());
+                application.getBoardFacade().setCurrentPlayer(game.getLatest_player());
                 latestLoadedBoard = newBoard;
             }
         }

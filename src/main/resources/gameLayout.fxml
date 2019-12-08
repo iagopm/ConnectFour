@@ -17,6 +17,9 @@
             <children>
                 <Button layoutX="80.0" layoutY="0.0" mnemonicParsing="false" onAction="#load" text="Load"/>
             </children>
+            <children>
+                <Button layoutX="10.0" layoutY="0.0" mnemonicParsing="false" onAction="#restart" text="Restart"/>
+            </children>
         </Pane>
         <Board fx:id="boardPane" layoutX="122.0" layoutY="69.0" prefHeight="583.0" prefWidth="711.0"
                style="-fx-border-width: 5; -fx-border-color: green;">

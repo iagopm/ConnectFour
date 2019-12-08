@@ -8,7 +8,7 @@ import java.util.List;
 public interface BoardFacade {
     void initBoard(Board oldBoard);
 
-    void placeChip(Integer column);
+    void placeChip(Integer column) throws Exception;
 
     boolean checkColumnIsFull(Integer column);
 
@@ -27,4 +27,8 @@ public interface BoardFacade {
     int getRowCount();
 
     void refreshGui();
+
+    int getCurrentPlayer();
+
+    void setCurrentPlayer(int currentPlayer);
 }
