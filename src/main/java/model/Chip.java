@@ -13,7 +13,6 @@ public class Chip extends Button {
         this.occupiedByPlayer = occupiedByPlayer;
         this.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
     }
-
     public int getColumn() {
         return column;
     }

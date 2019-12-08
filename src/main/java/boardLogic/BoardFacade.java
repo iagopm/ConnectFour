@@ -21,4 +21,10 @@ public interface BoardFacade {
     boolean checkEnd(int player);
 
     List<Chip> getRow(int i);
+
+    int getColumnCount();
+
+    int getRowCount();
+
+    void refreshGui();
 }

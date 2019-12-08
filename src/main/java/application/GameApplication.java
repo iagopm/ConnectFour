@@ -2,13 +2,20 @@ package application;
 
 import boardLogic.BoardFacade;
 import boardLogic.BoardFacadeImpl;
+import loadGameLogic.LoadGameFacade;
+import loadGameLogic.LoadGameFacadeImpl;
+import persistenceLogic.PersistenceFacade;
+import persistenceLogic.PersistenceFacadeImpl;
 
 public class GameApplication implements Application {
     private BoardFacade boardFacade;
-
+    private PersistenceFacade persistenceFacade;
+    private LoadGameFacade loadGameFacade;
     @Override
     public void init() {
-        boardFacade = new BoardFacadeImpl();
+        boardFacade = new BoardFacadeImpl(this);
+        persistenceFacade = new PersistenceFacadeImpl(this);
+        loadGameFacade = new LoadGameFacadeImpl(this);
     }
 
 
@@ -28,5 +35,21 @@ public class GameApplication implements Application {
 
     public void setBoardFacade(BoardFacade boardFacade) {
         this.boardFacade = boardFacade;
+    }
+
+    public PersistenceFacade getPersistenceFacade() {
+        return persistenceFacade;
+    }
+
+    public void setPersistenceFacade(PersistenceFacade persistenceFacade) {
+        this.persistenceFacade = persistenceFacade;
+    }
+
+    public LoadGameFacade getLoadGameFacade() {
+        return loadGameFacade;
+    }
+
+    public void setLoadGameFacade(LoadGameFacade loadGameFacade) {
+        this.loadGameFacade = loadGameFacade;
     }
 }

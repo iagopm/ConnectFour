@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Controller controller = new Controller(baseApplication.getGameApplication());
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("gameLayout.fxml"));
         fxmlLoader.setController(controller);
 
         Parent root = fxmlLoader.load();

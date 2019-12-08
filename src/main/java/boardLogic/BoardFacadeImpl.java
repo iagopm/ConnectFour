@@ -1,5 +1,6 @@
 package boardLogic;
 
+import application.GameApplication;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -17,12 +18,18 @@ import java.util.ResourceBundle;
 
 public class BoardFacadeImpl implements BoardFacade {
     public static ResourceBundle bundle = Resources.getBundle("game");
+    private GameApplication application;
+
     private final int column = Integer.parseInt(bundle.getString("column"));
     private final int row = Integer.parseInt(bundle.getString("row"));
     private Board board;
     private int currentPlayer = 1;
 
     private List<Chip> chipsToIterateOn;
+
+    public BoardFacadeImpl(GameApplication application) {
+        this.application = application;
+    }
 
     @Override
     public void initBoard(Board oldBoard) {
@@ -126,6 +133,7 @@ public class BoardFacadeImpl implements BoardFacade {
         return chips;
     }
 
+
     @Override
     public void printChip(Chip chipToPrint) {
         if (currentPlayer == 1) {
@@ -133,7 +141,7 @@ public class BoardFacadeImpl implements BoardFacade {
             chipToPrint.setText("" + currentPlayer);
             chipToPrint.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
             currentPlayer = 2;
-        } else {
+        } else if (currentPlayer == 2) {
             chipToPrint.setOccupiedByPlayer(currentPlayer);
             chipToPrint.setText("" + currentPlayer);
             chipToPrint.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -169,5 +177,36 @@ public class BoardFacadeImpl implements BoardFacade {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int getColumnCount() {
+        return column;
+    }
+
+    @Override
+    public int getRowCount() {
+        return row;
+    }
+
+    @Override
+    public void refreshGui() {
+        for (int y = 0; y < column; y++) {
+            List<Chip> column = getColumn(y);
+            for (Chip chip : column) {
+                refreshChip(chip);
+            }
+        }
+
+    }
+
+    private void refreshChip(Chip chip) {
+        if (chip.getOccupiedByPlayer() != 0) {
+            if (chip.getOccupiedByPlayer() == 1) {
+                chip.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+            } else if (chip.getOccupiedByPlayer() == 2) {
+                chip.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            }
+        }
     }
 }
