@@ -10,8 +10,12 @@ import loadGameLogic.LoadGameFacade;
 import loadGameLogic.LoadGameFacadeImpl;
 import persistenceLogic.PersistenceFacade;
 import persistenceLogic.PersistenceFacadeImpl;
+import sun.security.util.Resources;
+
+import java.util.ResourceBundle;
 
 public class GameApplication implements Application {
+    private static ResourceBundle bundle = Resources.getBundle("game");
     private Stage stage;
     private BoardFacade boardFacade;
     private PersistenceFacade persistenceFacade;
@@ -35,7 +39,10 @@ public class GameApplication implements Application {
 
         Parent root = fxmlLoader.load();
         stage.setTitle("");
-        stage.setScene(new Scene(root, 800, 600));
+        stage.setScene(new Scene(
+                root,
+                Integer.parseInt(bundle.getString("screenWidth")),
+                Integer.parseInt(bundle.getString("screenHeight"))));
         stage.show();
     }
 

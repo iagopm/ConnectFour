@@ -2,12 +2,7 @@ package boardLogic;
 
 import application.GameApplication;
 import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import model.Board;
 import model.Chip;
 import sun.security.util.Resources;
@@ -104,12 +99,12 @@ public class BoardFacadeImpl implements BoardFacade {
     }
 
     @Override
-    public List<Chip> getColumn(int i) {
+    public List<Chip> getColumn(int column) {
         List<Chip> chips = new ArrayList<>();
         Node result = null;
         ObservableList<Node> childrens = board.getChildren();
         for (Node node : childrens) {
-            if (board.getColumnIndex(node) == i) {
+            if (board.getColumnIndex(node) == column) {
                 result = node;
                 Chip chip = (Chip) result;
                 chips.add(chip);
@@ -138,11 +133,11 @@ public class BoardFacadeImpl implements BoardFacade {
     public void printChip(Chip chipToPrint) {
         if (currentPlayer == 1) {
             chipToPrint.setOccupiedByPlayer(currentPlayer);
-            chipToPrint.setBackgroundColor(Color.BLUE);
+            chipToPrint.setBackgroundColor(1);
             currentPlayer = 2;
         } else if (currentPlayer == 2) {
             chipToPrint.setOccupiedByPlayer(currentPlayer);
-            chipToPrint.setBackgroundColor(Color.RED);
+            chipToPrint.setBackgroundColor(2);
             currentPlayer = 1;
         }
     }
@@ -201,9 +196,9 @@ public class BoardFacadeImpl implements BoardFacade {
     private void refreshChip(Chip chip) {
         if (chip.getOccupiedByPlayer() != 0) {
             if (chip.getOccupiedByPlayer() == 1) {
-                chip.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+                chip.setBackgroundColor(1);
             } else if (chip.getOccupiedByPlayer() == 2) {
-                chip.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+                chip.setBackgroundColor(2);
             }
         }
     }

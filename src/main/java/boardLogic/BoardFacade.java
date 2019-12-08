@@ -16,7 +16,7 @@ public interface BoardFacade {
 
     void printChip(Chip chipToPrint);
 
-    List<Chip> getColumn(int i);
+    List<Chip> getColumn(int column);
 
     boolean checkEnd(int player);
 

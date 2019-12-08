@@ -1,9 +1,12 @@
 package model;
 
 import javafx.scene.control.Button;
-import javafx.scene.paint.Color;
+import sun.security.util.Resources;
+
+import java.util.ResourceBundle;
 
 public class Chip extends Button {
+    ResourceBundle bundle = Resources.getBundle("game");
     private int column;
     private int row;
     private int occupiedByPlayer;
@@ -22,12 +25,12 @@ public class Chip extends Button {
         );
     }
 
-    public void setBackgroundColor(Color color) {
+    public void setBackgroundColor(int color) {
         String hexCodeForColour;
-        if (color == Color.BLUE) {
-            hexCodeForColour = "#2969c0";
+        if (color == 1) {
+            hexCodeForColour = bundle.getString("playerOneColor");
         } else {
-            hexCodeForColour = "#ff0000";
+            hexCodeForColour = bundle.getString("playerTwoColor");
         }
         this.setStyle("-fx-background-radius: 50px; " +
                 "-fx-min-width: 50px;" +
