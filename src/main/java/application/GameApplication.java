@@ -35,7 +35,7 @@ public class GameApplication implements Application {
 
         Parent root = fxmlLoader.load();
         stage.setTitle("");
-        stage.setScene(new Scene(root, 1024, 768));
+        stage.setScene(new Scene(root, 800, 600));
         stage.show();
     }
 

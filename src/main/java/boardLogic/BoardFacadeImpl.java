@@ -138,13 +138,11 @@ public class BoardFacadeImpl implements BoardFacade {
     public void printChip(Chip chipToPrint) {
         if (currentPlayer == 1) {
             chipToPrint.setOccupiedByPlayer(currentPlayer);
-            chipToPrint.setText("" + currentPlayer);
-            chipToPrint.setBackground(new Background(new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
+            chipToPrint.setBackgroundColor(Color.BLUE);
             currentPlayer = 2;
         } else if (currentPlayer == 2) {
             chipToPrint.setOccupiedByPlayer(currentPlayer);
-            chipToPrint.setText("" + currentPlayer);
-            chipToPrint.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
+            chipToPrint.setBackgroundColor(Color.RED);
             currentPlayer = 1;
         }
     }

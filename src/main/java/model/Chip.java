@@ -1,6 +1,7 @@
 package model;
 
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 
 public class Chip extends Button {
     private int column;
@@ -12,7 +13,30 @@ public class Chip extends Button {
         this.row = row;
         this.occupiedByPlayer = occupiedByPlayer;
         this.setPrefSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        this.setStyle(
+                "-fx-background-radius: 50px; " +
+                        "-fx-min-width: 50px;" +
+                        "-fx-min-height: 50px; " +
+                        "-fx-max-width: 50px;" +
+                        "-fx-max-height: 50px;"
+        );
     }
+
+    public void setBackgroundColor(Color color) {
+        String hexCodeForColour;
+        if (color == Color.BLUE) {
+            hexCodeForColour = "#2969c0";
+        } else {
+            hexCodeForColour = "#ff0000";
+        }
+        this.setStyle("-fx-background-radius: 50px; " +
+                "-fx-min-width: 50px;" +
+                "-fx-min-height: 50px; " +
+                "-fx-max-width: 50px;" +
+                "-fx-max-height: 50px;" +
+                "-fx-background-color: " + hexCodeForColour);
+    }
+
     public int getColumn() {
         return column;
     }
@@ -45,4 +69,6 @@ public class Chip extends Button {
                 ", occupiedByPlayer=" + occupiedByPlayer +
                 '}';
     }
+
+
 }

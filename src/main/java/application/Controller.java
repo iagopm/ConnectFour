@@ -2,6 +2,7 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import model.ActionButton;
 import model.ActionPane;
 import model.Board;
 import model.Chip;
@@ -68,15 +69,15 @@ public class Controller {
             application.getBoardFacade().initBoard(boardPane);
 
             for (int z = 0; z < column; z++) {
-                Chip chip = new Chip(z, 0, 0);
-                chip.setOnAction(event -> {
+                ActionButton actionButton = new ActionButton(z);
+                actionButton.setOnAction(event -> {
                     try {
-                        application.getBoardFacade().placeChip(chip.getColumn());
+                        application.getBoardFacade().placeChip(actionButton.getColumn());
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
-                actionPane.add(chip, z, 0);
+                actionPane.add(actionButton, z, 0);
                 System.out.println("Action button on column " + z);
             }
         }
