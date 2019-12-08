@@ -58,7 +58,6 @@ public class BoardFacadeImpl implements BoardFacade {
 
     @Override
     public boolean checkEnd(int player) {
-        //comprobar vertical
         int count = 0;
         for (int currentColumn = 0; currentColumn < column; currentColumn++) {
             for (int c = 0; c < row; c++) {
@@ -75,8 +74,6 @@ public class BoardFacadeImpl implements BoardFacade {
                 }
             }
         }
-
-
         for (int currentRow = 0; currentRow < row; currentRow++) {
             for (int c = 0; c < row; c++) {
                 List<Chip> chipsInColumn = getRow(currentRow);
@@ -93,9 +90,33 @@ public class BoardFacadeImpl implements BoardFacade {
 
             }
         }
-        //comprobar diagonal
+        int[][] array = createBidiArray(board);
+        for (int i = 3; i < getColumnCount(); i++) {
+            for (int j = 0; j < getRowCount() - 3; j++) {
+                if (array[i][j] == player && array[i - 1][j + 1] == player && array[i - 2][j + 2] == player && array[i - 3][j + 3] == player)
+                    return true;
+            }
+        }
+        for (int i = 3; i < getColumnCount(); i++) {
+            for (int j = 3; j < getRowCount(); j++) {
+                if (array[i][j] == player && array[i - 1][j - 1] == player && array[i - 2][j - 2] == player && array[i - 3][j - 3] == player)
+                    return true;
+            }
+        }
 
         return false;
+    }
+
+    @Override
+    public int[][] createBidiArray(Board board) {
+        int bidiArray[][] = new int[getColumnCount()][getRowCount()];
+        for (int c = 0; c < getColumnCount(); c++) {
+            List<Chip> columnChip = getColumn(c);
+            for (Chip chip : columnChip) {
+                bidiArray[chip.getColumn()][chip.getRow()] = chip.getOccupiedByPlayer();
+            }
+        }
+        return bidiArray;
     }
 
     @Override

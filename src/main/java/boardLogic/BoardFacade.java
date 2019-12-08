@@ -16,6 +16,8 @@ public interface BoardFacade {
 
     void printChip(Chip chipToPrint);
 
+    int[][] createBidiArray(Board board);
+
     List<Chip> getColumn(int column);
 
     boolean checkEnd(int player);
