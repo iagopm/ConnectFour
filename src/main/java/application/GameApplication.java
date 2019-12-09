@@ -2,6 +2,8 @@ package application;
 
 import boardLogic.BoardFacade;
 import boardLogic.BoardFacadeImpl;
+import gameController.Controller;
+import gameController.ControllerManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,14 +22,14 @@ public class GameApplication implements Application {
     private BoardFacade boardFacade;
     private PersistenceFacade persistenceFacade;
     private LoadGameFacade loadGameFacade;
-    private Controller controller;
+    private ControllerManager controllerManager;
 
     @Override
     public void init() {
         boardFacade = new BoardFacadeImpl(this);
         persistenceFacade = new PersistenceFacadeImpl(this);
         loadGameFacade = new LoadGameFacadeImpl(this);
-        controller = new Controller(this);
+        controllerManager = new Controller(this);
     }
 
 
@@ -35,7 +37,7 @@ public class GameApplication implements Application {
     public void restart() throws Exception {
         init();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("gameLayout.fxml"));
-        fxmlLoader.setController(controller);
+        fxmlLoader.setController(controllerManager);
 
         Parent root = fxmlLoader.load();
         stage.setTitle("");
@@ -75,12 +77,12 @@ public class GameApplication implements Application {
         this.loadGameFacade = loadGameFacade;
     }
 
-    public Controller getController() {
-        return controller;
+    public ControllerManager getControllerManager() {
+        return controllerManager;
     }
 
-    public void setController(Controller controller) {
-        this.controller = controller;
+    public void setControllerManager(ControllerManager controllerManager) {
+        this.controllerManager = controllerManager;
     }
 
     @Override

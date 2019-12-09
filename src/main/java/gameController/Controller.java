@@ -1,5 +1,6 @@
-package application;
+package gameController;
 
+import application.GameApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import model.ActionButton;
@@ -10,7 +11,7 @@ import sun.security.util.Resources;
 
 import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements ControllerManager {
     public static ResourceBundle bundle = Resources.getBundle("game");
     GameApplication application;
     Boolean loaded = false;
@@ -81,10 +82,12 @@ public class Controller {
         }
     }
 
-
+    @Override
     public void save(ActionEvent actionEvent) {
         application.getPersistenceFacade().insertGame(application.getPersistenceFacade().parseGameIntoString(boardPane));
+
     }
+
 
     public void load(ActionEvent actionEvent) {
         while (application.getLoadGameFacade().isOpened()) {
