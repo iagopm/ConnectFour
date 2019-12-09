@@ -1,5 +1,7 @@
 package application;
 
+import animationLogic.AnimationFacade;
+import animationLogic.AnimationFacadeImpl;
 import boardLogic.BoardFacade;
 import boardLogic.BoardFacadeImpl;
 import gameController.Controller;
@@ -23,6 +25,7 @@ public class GameApplication implements Application {
     private PersistenceFacade persistenceFacade;
     private LoadGameFacade loadGameFacade;
     private ControllerManager controllerManager;
+    private AnimationFacade animationFacade;
 
     @Override
     public void init() {
@@ -30,6 +33,7 @@ public class GameApplication implements Application {
         persistenceFacade = new PersistenceFacadeImpl(this);
         loadGameFacade = new LoadGameFacadeImpl(this);
         controllerManager = new Controller(this);
+        animationFacade = new AnimationFacadeImpl(this);
     }
 
 
@@ -83,6 +87,14 @@ public class GameApplication implements Application {
 
     public void setControllerManager(ControllerManager controllerManager) {
         this.controllerManager = controllerManager;
+    }
+
+    public AnimationFacade getAnimationFacade() {
+        return animationFacade;
+    }
+
+    public void setAnimationFacade(AnimationFacade animationFacade) {
+        this.animationFacade = animationFacade;
     }
 
     @Override

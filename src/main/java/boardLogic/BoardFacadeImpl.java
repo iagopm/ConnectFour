@@ -161,6 +161,7 @@ public class BoardFacadeImpl implements BoardFacade {
             chipToPrint.setBackgroundColor(2);
             currentPlayer = 1;
         }
+        application.getAnimationFacade().animate(chipToPrint);
     }
 
     @Override
